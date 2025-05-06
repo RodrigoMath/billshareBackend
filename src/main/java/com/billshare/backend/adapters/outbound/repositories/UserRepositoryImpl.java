@@ -1,8 +1,8 @@
 package com.billshare.backend.adapters.outbound.repositories;
 
 import com.billshare.backend.adapters.outbound.entities.JpaUser;
-import com.billshare.backend.domain.user.User;
-import com.billshare.backend.domain.user.UserRepository;
+import com.billshare.backend.domain.userContext.User;
+import com.billshare.backend.domain.userContext.UserRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

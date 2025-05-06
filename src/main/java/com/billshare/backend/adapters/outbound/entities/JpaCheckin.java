@@ -1,28 +1,23 @@
 package com.billshare.backend.adapters.outbound.entities;
 
-import com.billshare.backend.domain.userContext.EUserPlan;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "checkin")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name = "user")
-public class JpaUser {
+public class JpaCheckin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String userName;
-    boolean active;
-    String email;
-    List<String> emails;
-    String password;
-    EUserPlan plano;
+
+    LocalDateTime diaHoraCheckin;
 }

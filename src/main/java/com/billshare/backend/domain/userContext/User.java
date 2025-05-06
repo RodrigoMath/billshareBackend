@@ -1,28 +1,25 @@
-package com.billshare.backend.domain.user;
-
-import java.util.List;
+package com.billshare.backend.domain.userContext;
 
 public class User {
     Long id;
-    boolean active; // esse aqui eu tenho que pensar, vale a pena? se o basic for o gratuito não...
+    boolean active; // esse aqui pode ser uma relação futuro de mensalidade paga
     String userName;
-    //Aqui teremos dois tipos de email, o do usuário que será apenas uma String e a lista de e-mails destino.
+
     String email;
-    List<String> emails;
     String password;
-    EUserPlan plano;
+    //EUserPlan plano;
+    EUserRoles role;
 
     public User() {
 
     }
 
-    public User(boolean active, String userName, String email, List<String> emails, String password, EUserPlan plano) {
+    public User(boolean active, String userName, String email, String password, EUserRoles role) {
         this.active = active;
         this.userName = userName;
         this.email = email;
-        this.emails = emails;
         this.password = password;
-        this.plano = plano;
+        this.role = role;
     }
 
     public boolean isActive() {
@@ -49,14 +46,6 @@ public class User {
         this.email = email;
     }
 
-    public List<String> getEmails() {
-        return emails;
-    }
-
-    public void setEmails(List<String> emails) {
-        this.emails = emails;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -65,11 +54,11 @@ public class User {
         this.password = password;
     }
 
-    public EUserPlan getPlano() {
-        return plano;
+    public EUserRoles getRole() {
+        return role;
     }
 
-    public void setPlano(EUserPlan plano) {
-        this.plano = plano;
+    public void setRole(EUserRoles role) {
+        this.role = role;
     }
 }

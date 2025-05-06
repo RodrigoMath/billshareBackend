@@ -1,4 +1,4 @@
-package com.billshare.backend.domain.user;
+package com.billshare.backend.domain.userContext;
 
 import java.util.List;
 import java.util.Optional;
