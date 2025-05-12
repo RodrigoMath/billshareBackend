@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JpaUserRepository extends JpaRepository<JpaUser,Long> {
-
+    long contagemDeLoginPorMesEUsuario(Long month, Long userId);
 }

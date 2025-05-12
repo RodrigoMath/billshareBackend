@@ -1,5 +1,12 @@
 package com.billshare.backend.domain.userContext;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     Long id;
     boolean active; // esse aqui pode ser uma relação futuro de mensalidade paga
@@ -9,6 +16,10 @@ public class User {
     String password;
     //EUserPlan plano;
     EUserRoles role;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "usuario_id")
+    private List<Checkin> checkins = new ArrayList<>();
 
     public User() {
 

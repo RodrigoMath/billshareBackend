@@ -10,5 +10,6 @@ public interface UserRepository {
     List<User> findAllActiveUsers();
     void delete(User user);
 
+    Long contagemDeLoginPorMesEUsuario(Long month, Long userId);
     boolean existsByEmailAndActiveTrue(String email);
 }
