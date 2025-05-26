@@ -1,31 +1,19 @@
 package com.billshare.backend.domain.userContext;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class User {
+public class Usuario {
     Long id;
     boolean active; // esse aqui pode ser uma relação futuro de mensalidade paga
     String userName;
-
     String email;
     String password;
     //EUserPlan plano;
     EUserRoles role;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "usuario_id")
-    private List<Checkin> checkins = new ArrayList<>();
-
-    public User() {
+    public Usuario() {
 
     }
 
-    public User(boolean active, String userName, String email, String password, EUserRoles role) {
+    public Usuario(boolean active, String userName, String email, String password, EUserRoles role) {
         this.active = active;
         this.userName = userName;
         this.email = email;

@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 public class Checkin {
      LocalDateTime diaHoraCheckin;
 
+     Long id;
+     Long idUsuario;
+
      public Checkin(LocalDateTime diaHoraCheckin) {
           this.diaHoraCheckin = diaHoraCheckin;
      }

@@ -1,28 +1,27 @@
 package com.billshare.backend.adapters.outbound.repositories;
 
-import com.billshare.backend.adapters.outbound.entities.JpaUser;
-import com.billshare.backend.domain.userContext.User;
+import com.billshare.backend.adapters.outbound.entities.JpaUsuario;
+import com.billshare.backend.domain.userContext.Usuario;
 import com.billshare.backend.domain.userContext.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class UserRepositoryImpl implements UserRepository {
+public class UsuarioRepositoryImpl implements UserRepository {
 
-    private final JpaUserRepository userRepository;
-    public UserRepositoryImpl( JpaUserRepository userRepository){
+    private final JpaUsuarioRepository userRepository;
+    public UsuarioRepositoryImpl(JpaUsuarioRepository userRepository){
         this.userRepository = userRepository;
     }
 
-    private User convertToDomain(JpaUser jpaUser) {
-        return new User();
+    private Usuario convertToDomain(JpaUsuario jpaUser) {
+        return new Usuario();
     }
 
-    private JpaUser convertToJpa(User user) {
-        return new JpaUser();
+    private JpaUsuario convertToJpa(Usuario usuario) {
+        return new JpaUsuario();
     }
 
     @Override
@@ -32,27 +31,27 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User save(User user) {
+    public Usuario save(Usuario usuario) {
         return null;
     }
 
     @Override
-    public Optional<User> findById(Long id) {
+    public Optional<Usuario> findById(Long id) {
         return Optional.empty();
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
+    public Optional<Usuario> findByEmail(String email) {
         return Optional.empty();
     }
 
     @Override
-    public List<User> findAllActiveUsers() {
+    public List<Usuario> findAllActiveUsers() {
         return null;
     }
 
     @Override
-    public void delete(User user) {
+    public void delete(Usuario usuario) {
 
     }
 

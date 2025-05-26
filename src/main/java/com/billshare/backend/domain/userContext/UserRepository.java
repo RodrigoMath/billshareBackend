@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository {
-    User save(User user);
-    Optional<User> findById(Long id);
-    Optional<User> findByEmail(String email);
-    List<User> findAllActiveUsers();
-    void delete(User user);
+    Usuario save(Usuario usuario);
+    Optional<Usuario> findById(Long id);
+    Optional<Usuario> findByEmail(String email);
+    List<Usuario> findAllActiveUsers();
+    void delete(Usuario usuario);
 
     Long contagemDeLoginPorMesEUsuario(Long month, Long userId);
     boolean existsByEmailAndActiveTrue(String email);

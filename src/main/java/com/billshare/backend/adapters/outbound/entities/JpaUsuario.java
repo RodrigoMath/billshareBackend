@@ -7,22 +7,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name = "user")
-public class JpaUser {
+@Table(name = "usuario")
+public class JpaUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String userName;
     boolean active;
     String email;
-    List<String> emails;
     String password;
     EUserPlan plano;
 }
