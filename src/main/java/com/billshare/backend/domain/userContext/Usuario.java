@@ -2,32 +2,18 @@ package com.billshare.backend.domain.userContext;
 
 public class Usuario {
     Long id;
-    boolean active; // esse aqui pode ser uma relação futuro de mensalidade paga
     String userName;
     String email;
-    String password;
-    //EUserPlan plano;
-    EUserRoles role;
 
     public Usuario() {
 
     }
 
-    public Usuario(boolean active, String userName, String email, String password, EUserRoles role) {
-        this.active = active;
+    public Usuario( String userName, String email, EUserRoles role) {
         this.userName = userName;
         this.email = email;
-        this.password = password;
-        this.role = role;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
 
     public String getUserName() {
         return userName;
@@ -45,19 +31,4 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public EUserRoles getRole() {
-        return role;
-    }
-
-    public void setRole(EUserRoles role) {
-        this.role = role;
-    }
 }

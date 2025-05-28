@@ -18,8 +18,5 @@ public class JpaUsuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String userName;
-    boolean active;
     String email;
-    String password;
-    EUserPlan plano;
 }
