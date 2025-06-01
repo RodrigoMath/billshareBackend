@@ -1,8 +1,14 @@
 package com.billshare.backend.application.services;
 
 import com.billshare.backend.adapters.inbound.UsuarioDTO;
+import com.billshare.backend.adapters.outbound.repositories.JpaUsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class UsuarioService {
+    @Autowired
+    JpaUsuarioRepository jpaUsuarioRepository;
+
+
 
     public void validaUsuario(UsuarioDTO usuario) {
         if (usuario.getEmail() == null || usuario.getEmail().trim().isEmpty()) {
