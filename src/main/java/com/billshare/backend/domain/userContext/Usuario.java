@@ -9,7 +9,7 @@ public class Usuario {
 
     }
 
-    public Usuario( String userName, String email, EUserRoles role) {
+    public Usuario( String userName, String email) {
         this.userName = userName;
         this.email = email;
     }

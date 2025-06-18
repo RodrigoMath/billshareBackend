@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository {
-    Usuario save(Usuario usuario);
+    void save(Usuario usuario);
+
+    boolean existsById(Long idUsuario);
     Optional<Usuario> findById(Long id);
     Optional<Usuario> findByEmail(String email);
     List<Usuario> findAllActiveUsers();

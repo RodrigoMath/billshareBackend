@@ -1,22 +1,29 @@
-package com.billshare.backend.application.services;
+package com.billshare.backend.domain.userContext;
 
 import com.billshare.backend.adapters.inbound.UsuarioDTO;
 import com.billshare.backend.adapters.outbound.repositories.JpaUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UsuarioService {
+
     @Autowired
-    JpaUsuarioRepository jpaUsuarioRepository;
+    UserRepository userRepository;
 
-
+    public void checaSeUsuarioExiste(Long idUsuario){
+        if (!userRepository.existsById(idUsuario)) {
+            throw new RuntimeException("Usuário não encontrado.");
+        }
+    }
 
     public void validaUsuario(UsuarioDTO usuario) {
         if (usuario.getEmail() == null || usuario.getEmail().trim().isEmpty()) {
-            //throw new ValidationException("O e-mail é obrigatório.");
+            throw new RuntimeException("O e-mail é obrigatório.");
         }
 
         if (!isEmailValido(usuario.getEmail())) {
-            //throw new ValidationException("E-mail inválido. Use o formato: usuario@dominio.com");
+            throw new RuntimeException("E-mail inválido. Use o formato: usuario@dominio.com");
         }
     }
 

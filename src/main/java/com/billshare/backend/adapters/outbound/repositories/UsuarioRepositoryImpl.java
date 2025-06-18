@@ -11,28 +11,35 @@ import java.util.Optional;
 @Repository
 public class UsuarioRepositoryImpl implements UserRepository {
 
-    private final JpaUsuarioRepository userRepository;
+    private final JpaUsuarioRepository jpaUsuarioRepository;
     public UsuarioRepositoryImpl(JpaUsuarioRepository userRepository){
-        this.userRepository = userRepository;
+        this.jpaUsuarioRepository = userRepository;
+    }
+
+    private JpaUsuario convertToJpa(Usuario usuario) {
+        return new JpaUsuario(usuario.getUserName(), usuario.getEmail());
+    }
+
+    @Override
+    public void save(Usuario usuario) {
+        jpaUsuarioRepository.save(convertToJpa(usuario));
+    }
+
+    @Override
+    public boolean existsById(Long idUsuario) {
+        return jpaUsuarioRepository.existsById(idUsuario);
     }
 
     private Usuario convertToDomain(JpaUsuario jpaUser) {
         return new Usuario();
     }
 
-    private JpaUsuario convertToJpa(Usuario usuario) {
-        return new JpaUsuario();
-    }
+
 
     @Override
     public Long contagemDeLoginPorMesEUsuario(Long month, Long userId){
        //return userRepository.findAllById(userId).
         return 0L;
-    }
-
-    @Override
-    public Usuario save(Usuario usuario) {
-        return null;
     }
 
     @Override

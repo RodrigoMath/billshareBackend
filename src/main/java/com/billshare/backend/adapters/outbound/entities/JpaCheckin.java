@@ -15,6 +15,10 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class JpaCheckin {
+    public JpaCheckin(Long idUsuario, LocalDateTime diaHoraCheckin){
+        this.idUsuario = idUsuario;
+        this.diaHoraCheckin = diaHoraCheckin;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
