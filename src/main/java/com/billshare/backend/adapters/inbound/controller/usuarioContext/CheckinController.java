@@ -1,10 +1,10 @@
 package com.billshare.backend.adapters.inbound.controller.usuarioContext;
 
 import com.billshare.backend.adapters.outbound.repositories.JpaCheckinRepository;
+import com.billshare.backend.application.useCases.UsuarioUseCase;
 import com.billshare.backend.domain.checkinContext.Checkin;
 import com.billshare.backend.domain.checkinContext.CheckinRepository;
 import com.billshare.backend.domain.checkinContext.dto.CheckinSummaryDTO;
-import com.billshare.backend.domain.userContext.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ import java.util.List;
 public class CheckinController {
 
     @Autowired
-    UsuarioService usuarioService;
+    UsuarioUseCase usuarioUseCase;
 
     @Autowired
     CheckinRepository checkinRepository;
@@ -31,7 +31,7 @@ public class CheckinController {
     @PostMapping("/checkin")
     public ResponseEntity<String> registerCheckin(@RequestBody Checkin checkin) {
         try {
-            usuarioService.checaSeUsuarioExiste(checkin.getIdUsuario());
+            usuarioUseCase.checaSeUsuarioExiste(checkin.getIdUsuario());
             checkinRepository.save(checkin);
 
             return ResponseEntity.status(HttpStatus.CREATED).build();

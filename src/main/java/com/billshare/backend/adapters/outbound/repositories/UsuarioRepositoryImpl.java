@@ -21,8 +21,13 @@ public class UsuarioRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void save(Usuario usuario) {
-        jpaUsuarioRepository.save(convertToJpa(usuario));
+    public Usuario save(Usuario usuario) {
+        JpaUsuario savedJpaUsuario = jpaUsuarioRepository.save(convertToJpa(usuario));
+        return new Usuario(
+                savedJpaUsuario.getId(),
+                savedJpaUsuario.getUserName(),
+                savedJpaUsuario.getEmail()
+        );
     }
 
     @Override
@@ -30,40 +35,4 @@ public class UsuarioRepositoryImpl implements UserRepository {
         return jpaUsuarioRepository.existsById(idUsuario);
     }
 
-    private Usuario convertToDomain(JpaUsuario jpaUser) {
-        return new Usuario();
-    }
-
-
-
-    @Override
-    public Long contagemDeLoginPorMesEUsuario(Long month, Long userId){
-       //return userRepository.findAllById(userId).
-        return 0L;
-    }
-
-    @Override
-    public Optional<Usuario> findById(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Usuario> findByEmail(String email) {
-        return Optional.empty();
-    }
-
-    @Override
-    public List<Usuario> findAllActiveUsers() {
-        return null;
-    }
-
-    @Override
-    public void delete(Usuario usuario) {
-
-    }
-
-    @Override
-    public boolean existsByEmailAndActiveTrue(String email) {
-        return false;
-    }
 }

@@ -1,8 +1,8 @@
 package com.billshare.backend.adapters.inbound.controller.usuarioContext;
 
 import com.billshare.backend.adapters.inbound.UsuarioDTO;
-import com.billshare.backend.adapters.outbound.repositories.JpaUsuarioRepository;
-import com.billshare.backend.domain.userContext.UsuarioService;
+import com.billshare.backend.application.useCases.EmailUseCase;
+import com.billshare.backend.application.useCases.UsuarioUseCase;
 import com.billshare.backend.domain.userContext.UserRepository;
 import com.billshare.backend.domain.userContext.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class UsuarioController {
     @Autowired
-    UsuarioService usuarioService;
+    UsuarioUseCase usuarioUseCase;
     @Autowired
     UserRepository userRepository;
 
     @PostMapping("/usuario")
     public ResponseEntity<String> registerUser(@RequestBody UsuarioDTO usuarioDTO){
         try {
-            usuarioService.validaUsuario(usuarioDTO);
+            usuarioUseCase.validaUsuario(usuarioDTO);
             Usuario usuario = new Usuario(usuarioDTO.getName(), usuarioDTO.getEmail());
-            userRepository.save(usuario);
+            usuario = userRepository.save(usuario);
+            usuarioUseCase.enviarCodigoAoUsuario(usuario);
 
             return ResponseEntity.status(HttpStatus.CREATED).build();
 
