@@ -1,7 +1,6 @@
 package com.billshare.backend.application.services;
 
 import com.billshare.backend.adapters.inbound.UsuarioDTO;
-import com.billshare.backend.adapters.outbound.repositories.JpaUsuarioRepository;
 import com.billshare.backend.application.useCases.EmailUseCase;
 import com.billshare.backend.application.useCases.UsuarioUseCase;
 import com.billshare.backend.domain.userContext.UserRepository;
@@ -42,7 +41,7 @@ public class UsuarioService implements UsuarioUseCase {
 
     @Override
     public String enviarCodigoAoUsuario(Usuario usuario) {
-        return emailUseCase.enviarMensagemDeEmail(
+        return emailUseCase.enviarEmailComCodigoDeCheckin(
                 usuario.getEmail(),
                 "Código de Login Plataforma Monte Jiu Jitsu - Pomerode",
                 String.format("Seu código, para realizar marcar presença nas aulas é: %d", usuario.getId())

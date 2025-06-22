@@ -1,6 +1,8 @@
 package com.billshare.backend.adapters.inbound.controller.usuarioContext;
 
 import com.billshare.backend.adapters.outbound.repositories.JpaCheckinRepository;
+import com.billshare.backend.application.useCases.CheckinUseCase;
+import com.billshare.backend.application.useCases.EmailUseCase;
 import com.billshare.backend.application.useCases.UsuarioUseCase;
 import com.billshare.backend.domain.checkinContext.Checkin;
 import com.billshare.backend.domain.checkinContext.CheckinRepository;
@@ -12,7 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -26,7 +30,10 @@ public class CheckinController {
     CheckinRepository checkinRepository;
 
     @Autowired
-    JpaCheckinRepository jpaCheckinRepository;
+    CheckinUseCase checkinUseCase;
+
+    @Autowired
+    EmailUseCase emailUseCase;
 
     @PostMapping("/checkin")
     public ResponseEntity<String> registerCheckin(@RequestBody Checkin checkin) {
@@ -44,8 +51,16 @@ public class CheckinController {
     public ResponseEntity<List<CheckinSummaryDTO>> getMonthlySummary(
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate month) {
 
-        LocalDate referenceDate = (month != null) ? month : LocalDate.now();
-//        return ResponseEntity.ok(checkinService.getCheckinsSummaryByMonth(referenceDate));
-        return null ;
+        try {
+            LocalDate referenceDate = (month != null) ? month : LocalDate.now();
+            HashMap<String, Long> usuarioCheckins = checkinUseCase.contagemMensalPorUsuario(referenceDate);
+            if (usuarioCheckins.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+            emailUseCase.enviarEmailComRelatorioMensal(usuarioCheckins);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

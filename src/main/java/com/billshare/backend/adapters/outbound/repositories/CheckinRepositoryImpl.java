@@ -3,6 +3,7 @@ package com.billshare.backend.adapters.outbound.repositories;
 import com.billshare.backend.adapters.outbound.entities.JpaCheckin;
 import com.billshare.backend.domain.checkinContext.Checkin;
 import com.billshare.backend.domain.checkinContext.CheckinRepository;
+import com.billshare.backend.domain.checkinContext.dto.CheckinSummaryDTO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -31,7 +32,7 @@ public class CheckinRepositoryImpl implements CheckinRepository {
     }
 
     @Override
-    public Optional<List<Checkin>> findAllCheckinsByUserAndMonth(long idUsuario, LocalDate mesAno) {
-        return Optional.empty();
+    public Optional<List<CheckinSummaryDTO>> findAllCheckinsByUserAndMonth(LocalDateTime dataInicio, LocalDateTime dataFim) {
+        return jpaCheckinRepository.findMonthlyCheckinsNative(dataInicio, dataFim);
     }
 }
